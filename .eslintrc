@@ -1,19 +1,20 @@
 {
   "extends": [
+    "next/core-web-vitals",
     "eslint:recommended",
     "plugin:node/recommended",
     "plugin:security/recommended",
-    "prettier"
+    "prettier",
   ],
   "plugins": [],
   "parser": "@babel/eslint-parser",
   "env": {
     "browser": true,
     "node": true,
-    "es6": true
+    "es6": true,
   },
   "rules": {
-    "no-console": "warn"
+    "no-console": "warn",
   },
   "overrides": [
     {
@@ -24,14 +25,14 @@
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:security/recommended",
-        "prettier"
+        "prettier",
       ],
       "plugins": ["@typescript-eslint"],
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
-        "sourceType": "module"
+        "sourceType": "module",
       },
-      "rules": {}
-    }
-  ]
+      "rules": {},
+    },
+  ],
 }
