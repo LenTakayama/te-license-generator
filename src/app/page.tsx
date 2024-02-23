@@ -173,6 +173,7 @@ export default function Home() {
               hidden
             />
             <button onClick={onClickButton}>顔写真を選択してください</button>
+            <p>600*600のピクルーで作られた画像のみネイティブ対応</p>
           </div>
           <InputTextComponent
             className={styles.card}
