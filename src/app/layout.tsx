@@ -6,7 +6,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'タクティカル祓魔師非公式職員証ジェネレータ',
+  title: 'タクティカル祓魔師職員証非公式ジェネレータ',
   description: 'タクティカル祓魔師職員証非公式ジェネレータってなんだよ',
 };
 
