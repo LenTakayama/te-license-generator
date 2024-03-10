@@ -3,6 +3,7 @@ import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import styles from './page.module.css';
 import { Noto_Sans_JP, Noto_Serif_JP } from 'next/font/google';
 import InputTextComponent from '@/_components/inputTextComponent';
+import CropperModalComponent from '@/_components/cropperModalComponent';
 
 const NotoSansFont = Noto_Sans_JP({
   display: 'swap',
@@ -24,6 +25,7 @@ export default function Home() {
   const [faceImageState, setFaceImageState] = useState<HTMLImageElement | null>(
     null,
   );
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [numberState, setNumberState] = useState<string>('');
   const [birthDateState, setBirthDateState] = useState<string>('');
   const [bloodTypeState, setBloodTypeState] = useState<string>('');
@@ -76,7 +78,7 @@ export default function Home() {
         canvasRef.current!.width * 0.583,
       );
       if (faceImageState) {
-        drawImg(faceImageState, 62, 243, 345, 345);
+        drawImg(faceImageState, 91, 220, 285, 370);
       }
       setPng(canvasRef.current!.toDataURL());
     };
@@ -96,6 +98,7 @@ export default function Home() {
         facePng.src = fileData;
         facePng.onload = () => {
           setFaceImageState(facePng);
+          setIsModalOpen(!isModalOpen);
         };
       }
     };
@@ -146,7 +149,7 @@ export default function Home() {
 
       <div>
         <h1 className={styles.center}>
-          環境庁神祇部職員証『非公式』ジェネレーター
+          環境庁神祇部職員証『非公式』ジェネレーター Ver.1.1.0
         </h1>
         <div>
           {png && (
@@ -173,7 +176,6 @@ export default function Home() {
               hidden
             />
             <button onClick={onClickButton}>顔写真を選択してください</button>
-            <p>600*600のピクルーで作られた画像のみネイティブ対応</p>
           </div>
           <InputTextComponent
             className={styles.card}
@@ -258,8 +260,22 @@ export default function Home() {
             https://w.atwiki.jp/nandayo
           </a>
         </p>
+        <br />
+        <div className={styles.code}>
+          <p>変更履歴：</p>
+          <p>
+            Ver.1.1.0：2024/03/11 -
+            志摩スペイン村からこんにちは。伊勢志摩ライナー車内で完成させた画像の切り抜き機能を追加しました。
+          </p>
+        </div>
       </div>
 
+      <CropperModalComponent
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        croppedImg={faceImageState}
+        setCroppedImg={setFaceImageState}
+      />
       <div hidden>
         <canvas id="license_canvas" ref={canvasRef}></canvas>
       </div>
